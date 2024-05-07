@@ -22,8 +22,8 @@ load_dotenv()
 
 # CONFIGURATION SECTION
 TOKEN = os.getenv('DISCORD_TOKEN') # Update with your bot token
-guild_id = os.getenv('GUILD_ID')# Update with your guild ID
-channel_id = os.getenv('CHANNEL_ID') # Update with your staff-only log channel ID
+guild_id = int(os.getenv('GUILD_ID')) # Update with your guild ID
+channel_id = int(os.getenv('CHANNEL_ID')) # Update with your staff-only log channel ID
 spam_role_name = os.getenv('SPAM_ROLE_NAME') # Adjust if you want to name the role differently
 
 # -- Code starting here, there should be no need to modify any of this --
