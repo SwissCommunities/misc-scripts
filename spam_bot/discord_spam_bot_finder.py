@@ -25,6 +25,7 @@ TOKEN = os.getenv('DISCORD_TOKEN') # Update with your bot token
 guild_id = int(os.getenv('GUILD_ID')) # Update with your guild ID
 channel_id = int(os.getenv('CHANNEL_ID')) # Update with your staff-only log channel ID
 spam_role_name = os.getenv('SPAM_ROLE_NAME') # Adjust if you want to name the role differently
+staff_role_id = os.getenv('STAFF_ROLE_ID')
 
 # -- Code starting here, there should be no need to modify any of this --
 
@@ -102,7 +103,7 @@ async def on_message(message):
                 
                 if max_time_diff <= 30:
                     # Send the removed message to the specified channel
-                    removed_message = f"{message.author.display_name} has posted potential spam:\n{message.content}"
+                    removed_message = f"<@&{staff_role_id}>\n{message.author.display_name} has posted potential spam:\n{message.content}"
                     await channel.send(removed_message)
                     print(removed_message)
                     
