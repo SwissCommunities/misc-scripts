@@ -108,7 +108,8 @@ async def on_message(message):
                     
                     # Delete the messages
                     await message.delete()
-                    (await prev_message.message.delete()) for prev_message in same_content_messages
+                    for prev_message in same_content_messages:
+                        await prev_message.message.delete()
                     
                     # Apply the "Certified Spam" role to the user
                     await message.author.add_roles(role, reason="Repeated spam message")
