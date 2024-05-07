@@ -86,7 +86,7 @@ async def on_message(message):
     if message.author.bot:  # Ignore messages from bots
         return
 
-    if len(message.content) > 8:  # Check if message length is greater than 8 characters
+    if len(message.content) > 1:  # Check if message length is greater than 8 characters
         user_id = message.author.id
         current_time = datetime.utcnow()
 
@@ -94,7 +94,7 @@ async def on_message(message):
         if user_id in user_messages:
             occurence_count = 0
             same_content_messages = [msg for msg in user_messages[user_id] if msg["content"] == message.content]
-            if len(same_content_messages) + 1 >= 3:
+            if len(same_content_messages) + 1 >= 4:
                 max_time_diff = 0
                 for msg in same_content_messages:
                     time_diff = (current_time - msg['time']).total_seconds()
