@@ -13,6 +13,7 @@
 # Import libraries (you need to install the discord library with "pip3 install discord")
 import discord
 import asyncio
+import os
 from datetime import datetime, timedelta, timezone
 from discord.ext import tasks
 from dotenv import load_dotenv
