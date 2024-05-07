@@ -97,7 +97,7 @@ async def on_message(message):
             if len(same_content_messages) + 1 >= 3:
                 max_time_diff = 0
                 for msg in same_content_messages:
-                    time_diff = current_time - msg['time']).total_seconds()
+                    time_diff = (current_time - msg['time']).total_seconds()
                     max_time_diff = time_diff if time_diff > max_time_diff else max_time_diff
                 
                 if max_time_diff <= 120:
