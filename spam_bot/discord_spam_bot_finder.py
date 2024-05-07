@@ -114,7 +114,6 @@ async def on_message(message):
                     # Apply the "Certified Spam" role to the user
                     await message.author.add_roles(role, reason="Repeated spam message")
                     await message.author.timeout(discord.utils.utcnow() + timedelta(days=1), reason="Repeated spam message")
-                    break  # No need to continue checking
 
         # Update user's recent messages
         if user_id not in user_messages:
