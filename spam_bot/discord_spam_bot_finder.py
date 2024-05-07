@@ -93,7 +93,7 @@ async def on_message(message):
         # Check if user has sent a message in another channel within the last 2 minutes
         if user_id in user_messages:
             occurence_count = 0
-            same_content_messages = [msg for msg in user_messages[user_id] if msg.content == message.content]
+            same_content_messages = [msg for msg in user_messages[user_id] if msg["content"] == message.content]
             if len(same_content_messages) + 1 >= 3:
                 max_time_diff = 0
                 for msg in same_content_messages:
@@ -109,7 +109,7 @@ async def on_message(message):
                     # Delete the messages
                     await message.delete()
                     for prev_message in same_content_messages:
-                        await prev_message.message.delete()
+                        await prev_message["message"].delete()
                     
                     # Apply the "Certified Spam" role to the user
                     await message.author.add_roles(role, reason="Repeated spam message")
@@ -126,4 +126,3 @@ async def on_message(message):
 
 # Run the bot with the provided token
 client.run(TOKEN)
-
