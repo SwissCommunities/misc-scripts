@@ -92,9 +92,15 @@ async def on_message(message):
 
         # Check if user has sent a message in another channel within the last 2 minutes
         if user_id in user_messages:
-            for prev_message_data in user_messages[user_id]:
-                prev_message = prev_message_data['message']
-                if (current_time - prev_message_data['time']).total_seconds() <= 120 and prev_message.content == message.content:
+            occurence_count = 0
+            same_content_messages = [msg for msg in user_messages[user_id] if msg.content == message.content]
+            if len(same_content_messages) + 1 >= 3:
+                max_time_diff = 0
+                for msg in same_content_messages:
+                    time_diff = current_time - msg['time']).total_seconds()
+                    max_time_diff = time_diff if time_diff > max_time_diff else max_time_diff
+                
+                if max_time_diff <= 120:
                     # Send the removed message to the specified channel
                     removed_message = f"{message.author.display_name} has posted potential spam:\n{message.content}"
                     await channel.send(removed_message)
@@ -102,7 +108,7 @@ async def on_message(message):
                     
                     # Delete the messages
                     await message.delete()
-                    await prev_message.delete()
+                    (await prev_message.message.delete()) for prev_message in same_content_messages
                     
                     # Apply the "Certified Spam" role to the user
                     await message.author.add_roles(role, reason="Repeated spam message")
