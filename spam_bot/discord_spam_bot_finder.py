@@ -100,7 +100,7 @@ async def on_message(message):
                     time_diff = (current_time - msg['time']).total_seconds()
                     max_time_diff = time_diff if time_diff > max_time_diff else max_time_diff
                 
-                if max_time_diff <= 120:
+                if max_time_diff <= 30:
                     # Send the removed message to the specified channel
                     removed_message = f"{message.author.display_name} has posted potential spam:\n{message.content}"
                     await channel.send(removed_message)
